@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using SuperSocket;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
@@ -12,6 +13,13 @@ using System.Windows.Forms;
 
 namespace connecttoweb
 {
+    static class Util
+    {
+        public static void logTime()
+        {
+            Console.WriteLine(DateTime.Now.Minute + ":" + DateTime.Now.Second + ":" + DateTime.Now.Millisecond);
+        }
+    }
     //some data classes
     [DataContract]
     class typemsg
@@ -145,6 +153,7 @@ namespace connecttoweb
             td.data[0] = inputBoxx("login:    ");
             td.data[1] = inputBoxx("password: ");
             sendDataToServer(td);
+            //Util.logTime();
             login = td.data[0];
         }
         
@@ -393,6 +402,11 @@ namespace connecttoweb
             conn.Send(primeJSON.SerializeObject(td));
         }
 
+        private void _sendEmpty(object obj)
+        {
+            conn.Send("/e");
+        }
+
         private void conn_message(object sender, WebSocket4Net.MessageReceivedEventArgs msg)
         {
             typedata income = new typedata();
@@ -402,6 +416,7 @@ namespace connecttoweb
 
         private void doMessage(typedata income)
         {
+            //Util.logTime();
             if (income.command == "answ")
             {
                 if (income.data[0] == "no")
@@ -465,9 +480,18 @@ namespace connecttoweb
             //Console.ReadKey();
         }
 
+        private void conn_disconnected(object sender, EventArgs a)
+        {
+            Console.WriteLine("\tClient disconnected");
+            this.authorized = false;
+            this.currentGroup = "none";
+        }
+
         private void conn_opened(object sender, EventArgs s)
         {
             Console.WriteLine("\tClient connected");
+            TimerCallback tc = new TimerCallback(_sendEmpty);
+            System.Threading.Timer tim = new System.Threading.Timer(tc, null, 50000, 50000);
         }
     }
 
