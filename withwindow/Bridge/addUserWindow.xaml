@@ -1,0 +1,15 @@
+﻿<Window x:Class="Bridge.addUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bridge"
+        mc:Ignorable="d"
+        Title="Add to chat" Height="145" Width="219" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Enter id of new person" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPerson" HorizontalAlignment="Left" Height="23" Margin="18,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" KeyUp="tbPerson_KeyUp"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="18,82,0,0" VerticalAlignment="Top" Width="177" Click="btnAdd_Click"/>
+
+    </Grid>
+</Window>
