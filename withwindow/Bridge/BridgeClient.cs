@@ -126,7 +126,7 @@ namespace Bridge
         ObservableCollection<oneMsg> listOfMsg;
         private string login = "unknown";
         private string currentGroup = "none";
-        private bool authorized = false;
+        public bool authorized = false;
         loginWindow loginW = null;
 
         public BridgeClient(ObservableCollection<oneChat> chatstr, ObservableCollection<oneMsg> msgstr,MainWindow mw)
@@ -137,6 +137,24 @@ namespace Bridge
             listOfChates = chatstr;
             win = mw;
             listOfMsg = msgstr;
+        }
+
+        public void _regUserKek(string login, string pass, string mail)
+        {
+
+            if(login!=null && pass!=null && mail!=null)
+            {
+                login = login.Replace(" ", string.Empty);
+                pass = pass.Replace(" ", string.Empty);
+                mail = mail.Replace(" ", string.Empty);
+                if (login != "" && pass != "" && mail != "" && (mail.IndexOf('@')>=0))
+                {
+                    typedata td = new typedata();
+                    td.command = "reguser";
+                    td.data = new string[3] { login, pass, mail };
+                    sendDataToServer(td);
+                }
+            }
         }
 
         private string inputBoxx(string msg)
