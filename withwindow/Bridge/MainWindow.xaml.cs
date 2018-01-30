@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Bridge
 {
@@ -22,16 +24,61 @@ namespace Bridge
     /// </summary>
     /// 
 
-    public class oneChat
+    public class oneChat:INotifyPropertyChanged
     {
         public string id { get; set; }
         public string name { get; set; }
-        public string image { get; set; }
+        private string _image;
+        public string image {
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                _image = value;
+                OnPropertyChanged("image");
+            }
+        }
+        private bool _isnotread = false;
+        public bool isNotRead
+        {
+            get
+            {
+                return _isnotread;
+            }
+            set
+            {
+                _isnotread = value;
+                if (_isnotread == false)
+                    image = "resources/readmsg.png";
+                else
+                    image = "resources/newmsg.png";
+                OnPropertyChanged("isNotRead");
+            }
+        }
         public oneChat(string id)
         {
             this.id = id;
             name = this.id;
-            image = "resources/chat.png";
+            image = "resources/readmsg.png";
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
+
+    public class OneUser
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public OneUser(string id)
+        {
+            this.id = id;
+            name = this.id;
         }
     }
 
@@ -75,6 +122,7 @@ namespace Bridge
     {
         public ObservableCollection<oneChat> chates { get; set; }
         public ObservableCollection<oneMsg> msges { get; set; }
+        public ObservableCollection<OneUser> users { get; set; }
         BridgeClient enginee;
         public MainWindow()
         {
@@ -84,7 +132,15 @@ namespace Bridge
             chatsList.ItemsSource = chates;
             msgsList.ItemsSource = msges;
             enginee = new BridgeClient(chates, msges, this);
-            
+            users = new ObservableCollection<OneUser>();
+            lbUsersKek.ItemsSource = users;
+            //chatsList.Focus();
+            btnAddUser.Visibility = Visibility.Hidden;
+            btnLeaveChat.Visibility = Visibility.Hidden;
+            btnShowUsers.Visibility = Visibility.Hidden;
+            msgsList.Visibility = Visibility.Hidden;
+            btnSendMsg.Visibility = Visibility.Hidden;
+            boxtomsg.Visibility = Visibility.Hidden;
         }
 
         private void createChatKek(string s)
@@ -100,10 +156,25 @@ namespace Bridge
             if (one != null)
             {
                 enginee.setCurrentChat(one.id);
+                one.isNotRead = false;
                 btnAddUser.Visibility = Visibility.Visible;
+                btnLeaveChat.Visibility = Visibility.Visible;
+                btnShowUsers.Visibility = Visibility.Visible;
+                msgsList.Visibility = Visibility.Visible;
+                btnSendMsg.Visibility = Visibility.Visible;
+                boxtomsg.Visibility = Visibility.Visible;
+
             }
             else
+            {
+                enginee.setCurrentChat("/none");
                 btnAddUser.Visibility = Visibility.Hidden;
+                btnLeaveChat.Visibility = Visibility.Hidden;
+                btnShowUsers.Visibility = Visibility.Hidden;
+                msgsList.Visibility = Visibility.Hidden;
+                btnSendMsg.Visibility = Visibility.Hidden;
+                boxtomsg.Visibility = Visibility.Hidden;
+            }
         }
 
         private void buttontest_click(object sender, RoutedEventArgs e)
@@ -172,6 +243,21 @@ namespace Bridge
         }
 
         private void Window_Initialized(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnShowUsers_MouseEnter(object sender, MouseEventArgs e)
+        {
+            lbUsersKek.Visibility = Visibility.Visible;
+        }
+
+        private void btnShowUsers_MouseLeave(object sender, MouseEventArgs e)
+        {
+            lbUsersKek.Visibility = Visibility.Hidden;
+        }
+
+        private void btnShowUsers_Click(object sender, RoutedEventArgs e)
         {
             
         }

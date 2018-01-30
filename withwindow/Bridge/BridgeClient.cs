@@ -325,8 +325,14 @@ namespace Bridge
 
         public void setCurrentChat(string chatid)
         {
-            currentGroup = chatid;
-            _sendRefreshMsg(null);
+            if (chatid == "/none")
+                currentGroup = "none";
+            else
+            {
+                currentGroup = chatid;
+                _sendRefreshMsg(null);
+                _updateUsersInCurrent();
+            }
 
         }
 
@@ -482,6 +488,17 @@ namespace Bridge
             }
         }
 
+        public void _updateUsersInCurrent()
+        {
+            if (currentGroup != "none")
+            {
+                typedata td = new typedata();
+                td.command = "sendugr";
+                td.target = currentGroup;
+                sendDataToServer(td);
+            }
+        }
+
         public void _createNewChat(string name)
         {
             typedata td = new typedata();
@@ -574,6 +591,23 @@ namespace Bridge
                     }}
                             ));
                 }
+                else if (income.msg == "sendugr")
+                {
+                    if(income.target == currentGroup)
+                    {
+                        this.win.Dispatcher.Invoke(new Action(() =>
+                        {
+                            this.win.users.Clear();
+                            for(int i=0; i<income.data.Length; i++)
+                            {
+                                typegetdata getdata = new typegetdata();
+                                getdata = (typegetdata)primeJSON.DeserializeObject(income.data[i], getdata.GetType());
+                                OneUser us = new OneUser(getdata.name);
+                                this.win.users.Add(us);
+                            }
+                        }));
+                    }
+                }
             }
             else
             if (income.command == "updmsg")
@@ -604,10 +638,47 @@ namespace Bridge
                     //MessageBox.Show(income.msg, "notification", MessageBoxButtons.OK);
                     if (income.msg == currentGroup)
                         _sendRefreshMsg(null);
+                    else
+                    {
+                        this.win.Dispatcher.Invoke(new Action(() =>
+                       {
+                           int index = -1;
+                           for(int i=0; i<this.win.chates.Count; i++)
+                           {
+                               if (this.win.chates[i].id == income.msg)
+                                   index = i;
+                           }
+                           if (index != -1)
+                           {
+                               this.win.chates[index].isNotRead = true;
+                           }
+                       }));
+                    }
+
+                  this.win.Dispatcher.Invoke(new Action(() =>
+                  {
+                      int ind = -1;
+                      object sel = this.win.chatsList.SelectedItem;
+                      for(int i=0; i<this.win.chates.Count; i++)
+                      {
+                          if (this.win.chates[i].id == income.msg)
+                              ind = i;
+                      }
+                      if(ind != -1)
+                      {
+                          oneChat forSwap = this.win.chates[ind];
+                          this.win.chates.Remove(forSwap);
+                          this.win.chates.Insert(0, forSwap);
+                          this.win.chatsList.SelectedItem = sel;
+                          
+                      }
+                  }));
                 }
-                else
-                    if (income.data[0] != "newmsg")
-                    income.display();
+                else if(income.data[0] == "updateusers")
+                {
+                    if (income.msg == currentGroup)
+                        _updateUsersInCurrent();
+                }
                 //income.display();
             }
             else

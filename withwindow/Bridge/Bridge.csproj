@@ -166,5 +166,9 @@
   <ItemGroup>
     <Resource Include="Resources\chat.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\newmsg.png" />
+    <Resource Include="Resources\readmsg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

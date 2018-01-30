@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Log In" Height="151.508" Width="165.075" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
-        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="21,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="21,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="21,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbLogin_KeyUp"/>
+        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="21,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp"/>
         <Button x:Name="btnSend" Content="Log In" HorizontalAlignment="Left" Margin="21,87,0,0" VerticalAlignment="Top" Width="120" Click="btnSend_Click"/>
 
     </Grid>

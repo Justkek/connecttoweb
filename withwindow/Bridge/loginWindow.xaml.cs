@@ -35,5 +35,17 @@ namespace Bridge
         {
             this.Owner.Visibility = Visibility.Visible;
         }
+
+        private void tbPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                eng._testLogIn(tbLogin.Text, tbPassword.Text, this);
+        }
+
+        private void tbLogin_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                tbPassword.Focus();
+        }
     }
 }

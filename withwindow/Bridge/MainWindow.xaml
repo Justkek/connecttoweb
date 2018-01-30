@@ -35,8 +35,8 @@
                     <ListBox x:Name="chatsList" Margin="0,30,3.6,0" Grid.RowSpan="3" SelectionChanged="chatsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="5" Orientation="Horizontal">
-                                    <Image Width="30" Height="30" Source="{Binding Path=image}"/>
+                                <StackPanel Name="spChats" Margin="5" Orientation="Horizontal" Width="222">
+                                    <Image Width="30" Height="30" Source="{Binding Path=image, UpdateSourceTrigger=PropertyChanged}"/>
                                     <StackPanel Margin="20,0,0,0">
                                         <TextBlock TextAlignment="Left" FontSize="16" Text="{Binding Path=name}"/>
                                         <TextBlock TextAlignment="Left" Foreground="Gray" FontSize="12" FontStyle="Italic" Text="{Binding Path=id}"/>
@@ -66,9 +66,20 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <TextBox x:Name="boxtomsg" Grid.ColumnSpan="3" Grid.Column="1" Margin="0.4,0,0.6,0" Grid.Row="2" TextWrapping="Wrap" FontSize="24" KeyUp="boxtomsg_KeyUp"/>
-                    <Button Content="Send" Grid.Column="4" Margin="0.2,0,0.6,-4" Grid.Row="2" Click="Button_Click" KeyUp="Button_KeyUp"/>
+                    <Button x:Name="btnSendMsg" Content="Send" Grid.Column="4" Margin="0.2,0,0.6,-4" Grid.Row="2" Click="Button_Click" KeyUp="Button_KeyUp"/>
                     <Button x:Name="btnLeaveChat" Content="Leave chat" Grid.Column="4" Margin="0.2,0,-0.4,0.4" Click="btnLeaveChat_Click"/>
-                    <Button x:Name="btnAddUser" Content="Add to chat" Grid.Column="3" HorizontalAlignment="Left" Margin="0.4,0,0,0" VerticalAlignment="Top" Width="123" Height="30" Grid.ColumnSpan="2" Click="btnAddUser_Click" Visibility="Hidden"/>
+                    <Button x:Name="btnAddUser" Content="Add to chat" Grid.Column="3" HorizontalAlignment="Left" Margin="0.4,0,0,0" VerticalAlignment="Top" Width="123" Height="30" Grid.ColumnSpan="2" Click="btnAddUser_Click"/>
+                    <Button x:Name="btnShowUsers" Content="Show users" Grid.Column="2" MouseEnter="btnShowUsers_MouseEnter" MouseLeave="btnShowUsers_MouseLeave" Click="btnShowUsers_Click" Margin="0.4,0,0,0.4" Grid.ColumnSpan="1"/>
+                    <ListBox x:Name="lbUsersKek" Background="#FFE5E5E5" Grid.Column="2"  VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="1" MaxHeight="400" Visibility="Hidden" Margin="0,30,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Background="#FFE5E5E5" FontSize="16" Text="{Binding Path=name}"/>
+                                    <TextBlock Background="#FFE5E5E5" FontSize="12" FontStyle="Italic" Text="{Binding Path=id}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </TabItem>
             <TabItem>
