@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,7 +68,19 @@ namespace Bridge
         {
             if(e.Key == Key.Enter)
             {
+                if (tbRegLogin.Text == "" || tbRegPass.Text == "" || tbRegMail.Text == "" || IsValidEmail(tbRegMail.Text) == false || (tbRegLogin.Text.IndexOf(' ') >= 0) || (tbRegPass.Text.IndexOf(' ') >= 0))
+                {
+                    /*ToolTip toolTip = new ToolTip();
+                    StackPanel toolTipPanel = new StackPanel();
+                    toolTipPanel.Children.Add(new TextBlock { Text = "Введите корректные данные", FontSize = 16 });
+                    toolTip.Content = toolTipPanel;
+                    btnReg.ToolTip = toolTip;*/
+                    return;
+                }
+                
+                
                 eng._regUserKek(tbRegLogin.Text, tbRegPass.Text, tbRegMail.Text);
+                Tab1.SelectedIndex = 0;
                 tbRegLogin.Clear();
                 tbRegPass.Clear();
                 tbRegMail.Clear();
@@ -110,6 +123,19 @@ namespace Bridge
         {
             if (tbRegMail.Text == "email")
                 tbRegMail.Clear();
+        }
+        public bool IsValidEmail(string email)
+        {
+            string pattern = @"^[-a-zA-Z0-9][-.a-zA-Z0-9]*@[-.a-zA-Z0-9]+(\.[-.a-zA-Z0-9]+)*\.
+    (com|edu|info|gov|int|mil|net|org|biz|name|museum|coop|aero|pro|tv|[a-zA-Z]{2})$";
+
+            Regex check = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
+            bool valid = false;
+
+            if (string.IsNullOrEmpty(email)) valid = false;
+            else valid = check.IsMatch(email);
+
+            return valid;
         }
     }
 }
