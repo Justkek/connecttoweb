@@ -112,25 +112,56 @@ namespace Bridge
     }
 
     [DataContract]
-    public class OnePeople
+    public class OnePeople:INotifyPropertyChanged
     {
+        private BridgeClient eng;
+
         [DataMember]
         public string id { get; set; }
         [DataMember]
         public string name { get; set; }
         [DataMember]
         public string pict { get; set; }
-        public OnePeople()
+        public OnePeople(BridgeClient e)
         {
+            eng = e;
             id = null;
             name = null;
             pict = null;
         }
+        public string Pict
+        {
+            get
+            {
+                return pict;
+            }
+            set
+            {
+                pict = value;
+                OnPropertyChanged("pict");
+            }
+        }
+
+        public void updateIcons()
+        {
+            if(Pict!= eng.map[id].pict)
+            {
+                Pict = eng.map[id].pict;
+            }
+        }
+
         public OnePeople(string idd, string namee, string pictt)
         {
             id = idd;
             name = namee;
             pict = pictt;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 

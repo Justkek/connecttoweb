@@ -622,7 +622,7 @@ namespace Bridge
             {
                 for(int i=0; i<income.data.Length; i++)
                 {
-                    OnePeople onee = new OnePeople();
+                    OnePeople onee = new OnePeople(this);
                     onee = (OnePeople)primeJSON.DeserializeObject(income.data[i], typeof(OnePeople));
                     map[onee.id] = onee;
                 }
@@ -637,6 +637,10 @@ namespace Bridge
                       item.updateIcons();
                   }
                   foreach (oneMsg item in this.win.msges)
+                  {
+                      item.updateIcons();
+                  }
+                  foreach (OnePeople item in this.win.friends)
                   {
                       item.updateIcons();
                   }
@@ -858,7 +862,7 @@ namespace Bridge
 
                    for(int i=0; i<income.data.Length; i++)
                    {
-                       OnePeople onee = new OnePeople();
+                       OnePeople onee = new OnePeople(this);
                        onee = (OnePeople)primeJSON.DeserializeObject(income.data[i], typeof(OnePeople));
                        this.win.friends.Add(onee);
                    }

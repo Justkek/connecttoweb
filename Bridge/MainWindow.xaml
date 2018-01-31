@@ -9,7 +9,7 @@
     <Window.Resources>
         <DataTemplate x:Key="friendsTemplate">
             <StackPanel Margin="5">
-                <Image Height="60" Width="60" Source="{Binding Path=pict}"/>
+                <Image Height="60" Width="60" Source="{Binding Path=pict, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock HorizontalAlignment="Center" TextAlignment="Left" Text="{Binding Path=name}" FontSize="16"/>
             </StackPanel>
         </DataTemplate>
@@ -69,8 +69,8 @@
                                 </StackPanel>
                                 <DataTemplate.Triggers>
                                     <DataTrigger Binding="{Binding fromSelf}" Value="true">
-                                        <Setter TargetName="msgiconn" Property="Margin" Value="180,0,0,0"/>
-                                        <Setter TargetName="panelmsg" Property="Margin" Value="10,0,0,0"></Setter>
+                                        <Setter TargetName="msgiconn" Property="Margin" Value="175,0,0,0"/>
+                                        <Setter TargetName="panelmsg" Property="Margin" Value="15,0,0,0"></Setter>
                                         <Setter TargetName="panelmsg" Property="Background" Value="#FFC18D8D"/>
                                         <Setter TargetName="pmsg1" Property="TextAlignment" Value="right"/>
                                         <Setter TargetName="pmsg2" Property="TextAlignment" Value="right"/>
@@ -118,7 +118,7 @@
                     </Grid.ColumnDefinitions>
                     <Button x:Name="btnFriendAdd" Content="Add friend" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="1" Height="30" Click="btnFriendAdd_Click"/>
                     <Button x:Name="btnFriendsDelete" Content="Delete" Grid.Column="4" HorizontalAlignment="Left" Margin="0.2,0,-0.4,0" VerticalAlignment="Top" Width="121" Height="30" Click="btnFriendsDelete_Click"/>
-                    <Button x:Name="btnFriendsSend" Content="Send message" Grid.Column="3" HorizontalAlignment="Left" Margin="0.4,0,0,0" VerticalAlignment="Top" Width="123" Grid.ColumnSpan="2" Height="30" Click="btnFriendsSend_Click"/>
+                    <Button x:Name="btnFriendsSend" Content="Send message" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Grid.ColumnSpan="2" Height="30" Click="btnFriendsSend_Click"/>
                     <ListBox x:Name="lbFriends" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemTemplate="{StaticResource friendsTemplate}" ItemsPanel="{StaticResource friendsItemsTemplate}" HorizontalAlignment="Left" Height="542" Margin="0,30,-0.4,0" VerticalAlignment="Top" Width="902" Grid.RowSpan="3" Grid.ColumnSpan="5" SelectionChanged="lbFriends_SelectionChanged"/>
                 </Grid>
             </TabItem>
