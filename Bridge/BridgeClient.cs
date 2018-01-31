@@ -630,19 +630,19 @@ namespace Bridge
               {
                   foreach (oneChat item in this.win.chates)
                   {
-                      item.updateIcon();
+                      item.updateIcon(this);
                   }
                   foreach (OneUser item in this.win.users)
                   {
-                      item.updateIcons();
+                      item.updateIcons(this);
                   }
                   foreach (oneMsg item in this.win.msges)
                   {
-                      item.updateIcons();
+                      item.updateIcons(this);
                   }
                   foreach (OnePeople item in this.win.friends)
                   {
-                      item.updateIcons();
+                      item.updateIcons(this);
                   }
 
               }));

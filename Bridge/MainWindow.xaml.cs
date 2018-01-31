@@ -44,12 +44,12 @@ namespace Bridge
                 OnPropertyChanged("image");
             }
         }
-        public void updateIcon()
+        public void updateIcon(BridgeClient e)
         {
             if (id.StartsWith("pm"))
             {
-                if (image != this.enginee.map[nick].pict)
-                    image = this.enginee.map[nick].pict;
+                if (image != e.map[nick].pict)
+                    image = e.map[nick].pict;
             }
         }
         private bool _isnotread = false;
@@ -142,11 +142,11 @@ namespace Bridge
             }
         }
 
-        public void updateIcons()
+        public void updateIcons(BridgeClient e)
         {
-            if(Pict!= eng.map[id].pict)
+            if(Pict!= e.map[id].pict)
             {
-                Pict = eng.map[id].pict;
+                Pict = e.map[id].pict;
             }
         }
 
@@ -190,11 +190,11 @@ namespace Bridge
             _pict = eng.map[id].pict;
         }
 
-        public void updateIcons()
+        public void updateIcons(BridgeClient e)
         {
-            if(pict != eng.map[id].pict)
+            if(pict != e.map[id].pict)
             {
-                pict = eng.map[id].pict;
+                pict = e.map[id].pict;
             }
         }
 
@@ -241,11 +241,11 @@ namespace Bridge
             pict = this.eng.map[idfrom].pict;
         }
 
-        public void updateIcons()
+        public void updateIcons(BridgeClient e)
         {
-            if(pict != eng.map[idfrom].pict)
+            if(pict != e.map[idfrom].pict)
             {
-                pict = eng.map[idfrom].pict;
+                pict = e.map[idfrom].pict;
             }
         }
 
