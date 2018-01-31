@@ -15,12 +15,12 @@ using System.Windows.Shapes;
 namespace Bridge
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для formFriendAdd.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class formFriendAdd : Window
     {
         public BridgeClient eng;
-        public Window1(BridgeClient e)
+        public formFriendAdd(BridgeClient e)
         {
             eng = e;
             InitializeComponent();
@@ -28,15 +28,15 @@ namespace Bridge
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            eng._createNewChat("gr"+tbName.Text);
+            eng._newFriend(tbName.Text);
             this.Close();
         }
 
         private void tbName_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
-                eng._createNewChat("gr"+tbName.Text);
+                eng._newFriend(tbName.Text);
                 this.Close();
             }
         }

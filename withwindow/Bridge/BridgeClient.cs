@@ -11,6 +11,10 @@ using System.Runtime.Serialization;
 using WebSocket4Net;
 using System.IO;
 using System.Windows.Forms;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System.Collections;
+
 
 namespace Bridge
 {
@@ -34,6 +38,17 @@ namespace Bridge
         {
             Console.WriteLine($"\t\t{from}: {msg}");
         }
+    }
+
+    [DataContract]
+    class typegetpeople
+    {
+        [DataMember]
+        public string name;
+        [DataMember]
+        public string id;
+        [DataMember]
+        public string pict;
     }
 
     [DataContract]
@@ -120,6 +135,8 @@ namespace Bridge
     //main enginee
     public class BridgeClient
     {
+        public Dictionary<string, OnePeople> map = new Dictionary<string, OnePeople>();
+
         WebSocket conn = new WebSocket("ws://gndlfserverbd.herokuapp.com");
         MainWindow win;
         ObservableCollection<oneChat> listOfChates;
@@ -137,6 +154,33 @@ namespace Bridge
             listOfChates = chatstr;
             win = mw;
             listOfMsg = msgstr;
+        }
+
+        public void _getFriends(string login, string forwhat)
+        {
+            typedata td = new typedata();
+            td.command = "sendfr";
+            td.target = login;
+            td.msg = forwhat;
+            sendDataToServer(td);
+        }
+
+        public void _assignPicture(string path)
+        {
+            Account account = new Account("gndlf", "322892712586893", "bdIeZOB0zvr6oWFKY0L5hu7fjU8");
+            Cloudinary cloud = new Cloudinary(account);
+
+            var uploadparams = new ImageUploadParams()
+            {
+                File = new FileDescription(new Uri(path).LocalPath)
+            };
+
+            var uploadresult = cloud.Upload(uploadparams);
+            typedata td = new typedata();
+            td.command = "assignpict";
+            td.target = this.login;
+            td.msg = "https://res.cloudinary.com"+uploadresult.Uri.AbsolutePath;
+            sendDataToServer(td);
         }
 
         public void _regUserKek(string login, string pass, string mail)
@@ -183,6 +227,29 @@ namespace Bridge
             this.loginW = lw1;
         }
 
+        public void _newFriend(string logg)
+        {
+            if(authorized == true)
+            {
+                typedata td = new typedata();
+                td.command = "makefr";
+                td.msg = this.login;
+                td.target = logg;
+                sendDataToServer(td);
+            }
+        }
+
+        public void _delFriend(string logg)
+        {
+            if (authorized == true)
+            {
+                typedata td = new typedata();
+                td.command = "delfr";
+                td.msg = this.login;
+                td.target = logg;
+                sendDataToServer(td);
+            }
+        }
 
         private void authComplete()//after auth we need to get list of chats
         {
@@ -195,6 +262,7 @@ namespace Bridge
             td.command = "sendgru";
             td.target = login;
             sendDataToServer(td);
+            _getFriends(login, "main");
         }
 
         private void _logIn(typedata td)
@@ -517,6 +585,15 @@ namespace Bridge
             }
         }
 
+        public void _openPrivate(string logg)
+        {
+            typedata td = new typedata();
+            td.command = "openPrivate";
+            td.msg = login;
+            td.target = logg;
+            sendDataToServer(td);
+        }
+
         public void _createNewChat(string name)
         {
             typedata td = new typedata();
@@ -541,6 +618,16 @@ namespace Bridge
         private void doMessage(typedata income)
         {
             //Util.logTime();
+            if(income.command == "usrdata")
+            {
+                for(int i=0; i<income.data.Length; i++)
+                {
+                    OnePeople onee = new OnePeople();
+                    onee = (OnePeople)primeJSON.DeserializeObject(income.data[i], typeof(OnePeople));
+                    map[onee.id] = onee;
+                }
+            }
+            else
             if (income.command == "answ")
             {
                 if (income.data[0] == "no")
@@ -590,6 +677,23 @@ namespace Bridge
                 }
             }
             else
+            if (income.command == "switch")
+            {
+                this.win.Dispatcher.Invoke(new Action(() =>
+               {
+                   this.win.tabcontroll.SelectedIndex = 1;
+                   foreach (oneChat item in this.win.chates)
+                   {
+                       if (item.id == income.target)
+                       {
+                           this.win.chatsList.SelectedItem = item;
+                           break;
+                       }
+                   }
+               }));
+            }
+
+            else
             if (income.command == "upddata")
             {
                 if (income.msg == "sendgru")
@@ -600,7 +704,7 @@ namespace Bridge
                     {
                         typegetdata getdata = new typegetdata();
                         getdata = (typegetdata)primeJSON.DeserializeObject(income.data[i], getdata.GetType());
-                        oneChat newchat = new oneChat(getdata.name);
+                        oneChat newchat = new oneChat(getdata.name, this.login, this);
                         getdata.display();
                         
                                     this.listOfChates.Add(newchat);
@@ -625,6 +729,36 @@ namespace Bridge
                             }
                         }));
                     }
+                }
+                else if(income.msg == "sendgruws")
+                {
+                    this.win.Dispatcher.Invoke(new Action(() =>
+                    {
+                        this.listOfChates.Clear();
+                        for (int i = 0; i < income.data.Length; i++)
+                        {
+                            typegetdata getdata = new typegetdata();
+                            getdata = (typegetdata)primeJSON.DeserializeObject(income.data[i], getdata.GetType());
+                            oneChat newchat = new oneChat(getdata.name, this.login, this);
+                            getdata.display();
+
+                            this.listOfChates.Add(newchat);
+
+
+                        }
+
+                        this.win.tabcontroll.SelectedIndex = 1;
+                        foreach (oneChat item in this.win.chates)
+                        {
+                            if(item.id == income.target)
+                            {
+                                this.win.chatsList.SelectedItem = item;
+                                break;
+                            }
+                        }
+
+                    }
+                            ));
                 }
             }
             else
@@ -700,7 +834,24 @@ namespace Bridge
                 //income.display();
             }
             else
-                income.display();
+            if(income.command == "friends")
+            {
+               this.win.Dispatcher.Invoke(new Action(() =>
+               {
+                   this.win.friends.Clear();
+
+                   for(int i=0; i<income.data.Length; i++)
+                   {
+                       OnePeople onee = new OnePeople();
+                       onee = (OnePeople)primeJSON.DeserializeObject(income.data[i], typeof(OnePeople));
+                       this.win.friends.Add(onee);
+                   }
+
+                    
+                    
+               }));
+
+            }
             //income.display();
             //Console.ReadKey();
         }

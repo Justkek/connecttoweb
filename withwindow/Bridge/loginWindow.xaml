@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bridge"
         mc:Ignorable="d"
-        Title="Log In" Height="184.013" Width="307.217" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="Log In" Height="191.09" Width="307.217" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="21,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbLogin_KeyUp" Text="login" GotFocus="tbLogin_GotFocus"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="21,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp" Text="password" GotFocus="tbPassword_GotFocus"/>
         <Button x:Name="btnSend" Content="Log In" HorizontalAlignment="Left" Margin="21,87,0,0" VerticalAlignment="Top" Width="120" Click="btnSend_Click"/>
-        <TextBox x:Name="tbRegLogin" Height="23" Margin="157,10,23,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyUp="tbRegLogin_KeyUp" Text="login" GotFocus="tbRegLogin_GotFocus"/>
+        <TextBox x:Name="tbRegLogin" Height="23" Margin="158,10,23,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyUp="tbRegLogin_KeyUp" Text="login" GotFocus="tbRegLogin_GotFocus" Width="120"/>
         <TextBox x:Name="tbRegPass" HorizontalAlignment="Left" Height="23" Margin="158,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegPass_KeyUp" Text="password" GotFocus="tbRegPass_GotFocus"/>
-        <TextBox x:Name="tbRegMail" HorizontalAlignment="Left" Height="23" Margin="157,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegMail_KeyUp" Text="email" GotFocus="tbRegMail_GotFocus"/>
+        <TextBox x:Name="tbRegMail" HorizontalAlignment="Left" Height="23" Margin="158,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegMail_KeyUp" Text="email" GotFocus="tbRegMail_GotFocus"/>
         <Button x:Name="btnSignUp" Content="SignUp" HorizontalAlignment="Left" Margin="158,125,0,0" VerticalAlignment="Top" Width="119" Click="btnSignUp_Click"/>
         <Button x:Name="btnRemind" Content="Remind pass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="21,125,0,0" IsEnabled="False"/>
 

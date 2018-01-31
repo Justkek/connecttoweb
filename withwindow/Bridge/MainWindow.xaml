@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bridge"
         mc:Ignorable="d"
-        Title="Bridge" Height="485.369" Width="820.382" Loaded="Window_Loaded" Initialized="Window_Initialized" Visibility="Visible">
-
+        Title="Bridge" Height="485.369" Width="820.382" Loaded="Window_Loaded" Initialized="Window_Initialized" Visibility="Visible" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <DataTemplate x:Key="friendsTemplate">
+            <StackPanel Margin="5">
+                <Image Height="60" Width="60" Source="{Binding Path=pict}"/>
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Left" Text="{Binding Path=name}" FontSize="16"/>
+            </StackPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="friendsItemsTemplate">
+            <WrapPanel/>
+        </ItemsPanelTemplate>
+    </Window.Resources>
     <Grid>
-        <TabControl TabStripPlacement="Left" Margin="2,0,-1.8,0" SelectedIndex="1">
+        <TabControl x:Name="tabcontroll" TabStripPlacement="Left" Margin="2,0,-1.8,0" SelectedIndex="1">
             <TabItem>
                 <TabItem.Header>
                     <Image Height="50" Width="50" Source="Resources\me.png"></Image>
@@ -86,13 +96,34 @@
                 <TabItem.Header>
                     <Image Height="50" Width="50" Source="Resources\friend.png"></Image>
                 </TabItem.Header>
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" MaxHeight="30" MinHeight="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="250" MinWidth="250" Width="250"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition MaxWidth="121" MinWidth="121" Width="121"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnFriendAdd" Content="Add friend" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="1" Height="30" Click="btnFriendAdd_Click"/>
+                    <Button x:Name="btnFriendsDelete" Content="Delete" Grid.Column="4" HorizontalAlignment="Left" Margin="0.2,0,-0.4,0" VerticalAlignment="Top" Width="121" Height="30" Click="btnFriendsDelete_Click"/>
+                    <Button x:Name="btnFriendsSend" Content="Send message" Grid.Column="3" HorizontalAlignment="Left" Margin="0.4,0,0,0" VerticalAlignment="Top" Width="123" Grid.ColumnSpan="2" Height="30" Click="btnFriendsSend_Click"/>
+                    <ListBox x:Name="lbFriends" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemTemplate="{StaticResource friendsTemplate}" ItemsPanel="{StaticResource friendsItemsTemplate}" HorizontalAlignment="Left" Height="418" Margin="0,30,-0.4,0" VerticalAlignment="Top" Width="742" Grid.RowSpan="3" Grid.ColumnSpan="5" SelectionChanged="lbFriends_SelectionChanged"/>
+                </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Image Height="50" Width="50" Source="Resources\setting.png"></Image>
                 </TabItem.Header>
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Image x:Name="imgSettingPict" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" AllowDrop="True" Drop="imgSettingPict_Drop" PreviewDragOver="imgSettingPict_PreviewDragOver" Source="Resources/dragndrop.png" RenderTransformOrigin="0.503,1.005" Stretch="Fill" MouseLeftButtonUp="imgSettingPict_MouseLeftButtonUp"/>
+                    <Button x:Name="btnSettingLoadFrom" Content="Load Picture" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingLoadFrom_Click"/>
+                    <Button x:Name="btnSettingConfirmPicture" Content="Confirm Picture" HorizontalAlignment="Left" Margin="190,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingConfirmPicture_Click"/>
+                </Grid>
             </TabItem>
         </TabControl>
 
