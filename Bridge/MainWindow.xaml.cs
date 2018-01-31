@@ -93,7 +93,7 @@ namespace Bridge
                     else
                     {
                         name = "/pm " + qqq[0];
-                        nick = qqq[2];
+                        nick = qqq[0];
                         image = this.enginee.map[qqq[0]].pict;
                     }
                 }
