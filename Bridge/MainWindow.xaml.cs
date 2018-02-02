@@ -253,6 +253,16 @@ namespace Bridge
         BridgeClient eng;
         public string idfrom { get; set; }
         private string _namefrom;
+        private string _time;
+        public string time
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                OnPropertyChanged("time");
+            }
+        }
         public string name
         {
             get
@@ -281,8 +291,10 @@ namespace Bridge
                 OnPropertyChanged("pict");
             }
         }
-        public oneMsg(string id, string text, string login, BridgeClient e)
+        public oneMsg(string id, string text, string ttime, string login, BridgeClient e)
         {
+            string[] retime = ttime.Split(new char[] { ' ', ':' });
+            time = " at " + retime[4] + ":" + retime[5] + " of " + retime[0] + " " + retime[2] + " " + retime[1] + " " + retime[3];
             eng = e;
             idfrom = id;
             name = id;
@@ -437,13 +449,15 @@ namespace Bridge
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            addUserWindow auw = new addUserWindow(enginee);
-            auw.Owner = this;
-            auw.Show();
-            auw.Focus();
-            auw.tbPerson.Focus();
-            auw.Top = this.Top + 100;
-            auw.Left = this.Left + 100;
+            chooseUser cu = new chooseUser(true, enginee, this, new Action<string>(re => {
+                enginee._addPersonToCurrentChat(re);
+            }));
+
+            cu.Show();
+            cu.Focus();
+            cu.tbIncome.Focus();
+            cu.Top = this.Top + 100;
+            cu.Left = this.Left + 100;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -547,13 +561,15 @@ namespace Bridge
 
         private void btnFriendAdd_Click(object sender, RoutedEventArgs e)
         {
-            formFriendAdd auw = new formFriendAdd(enginee);
-            auw.Owner = this;
-            auw.Show();
-            auw.Focus();
-            auw.tbName.Focus();
-            auw.Top = this.Top + 100;
-            auw.Left = this.Left + 100;
+            chooseUser cu = new chooseUser(false, enginee, this, new Action<string>(re => {
+                enginee._newFriend(re);
+            }));
+
+            cu.Show();
+            cu.Focus();
+            cu.tbIncome.Focus();
+            cu.Top = this.Top + 100;
+            cu.Left = this.Left + 100;
         }
 
         private void btnFriendsDelete_Click(object sender, RoutedEventArgs e)
@@ -572,6 +588,11 @@ namespace Bridge
             {
                 enginee._openPrivate(onee.id);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

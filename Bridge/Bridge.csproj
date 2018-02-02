@@ -105,6 +105,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="chooseUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="formFriendAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +129,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BridgeClient.cs" />
+    <Compile Include="chooseUser.xaml.cs">
+      <DependentUpon>chooseUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="formFriendAdd.xaml.cs">
       <DependentUpon>formFriendAdd.xaml</DependentUpon>
     </Compile>

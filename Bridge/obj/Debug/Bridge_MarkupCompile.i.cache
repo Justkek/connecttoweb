@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Xiaomi\source\repos\Bridge\Bridge\obj\Debug\
+C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\
 Bridge
 none
 false
 DEBUG;TRACE
-C:\Users\Xiaomi\source\repos\Bridge\Bridge\App.xaml
-5-1102892348
+C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\App.xaml
+6-2141365956
 
-14-872499735
-29266189804
-addUserWindow.xaml;formFriendAdd.xaml;loginWindow.xaml;MainWindow.xaml;addChatWindow.xaml;
+15-877854718
+291581962506
+addUserWindow.xaml;chooseUser.xaml;formFriendAdd.xaml;loginWindow.xaml;MainWindow.xaml;addChatWindow.xaml;
 
 False
 

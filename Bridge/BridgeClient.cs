@@ -34,6 +34,8 @@ namespace Bridge
         public string msg;
         [DataMember]
         public string from;
+        [DataMember]
+        public string time;
         public void display()
         {
             Console.WriteLine($"\t\t{from}: {msg}");
@@ -799,7 +801,7 @@ namespace Bridge
                 {
                     typemsg tmsg = new typemsg();
                     tmsg = (typemsg)primeJSON.DeserializeObject(income.data[i], tmsg.GetType());
-                    oneMsg newmsg = new oneMsg(tmsg.from, tmsg.msg, this.login, this);
+                           oneMsg newmsg = new oneMsg(tmsg.from, tmsg.msg, tmsg.time, this.login, this);
                     
                      this.listOfMsg.Add(newmsg);
                      

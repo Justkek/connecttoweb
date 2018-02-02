@@ -28,7 +28,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    
+
                                     <TextBlock Text="{Binding Path=name}"/>
                                     <TextBlock Text="{Binding Path=id}"/>
                                 </StackPanel>
@@ -75,7 +75,10 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Name="msgiconn" VerticalAlignment="Top" Width="30" Height="30" Source="{Binding Path=pict, UpdateSourceTrigger=PropertyChanged}"/>
                                     <StackPanel Name="panelmsg"  MinWidth="400" MinHeight="35" Background="#FFBFA966" Margin="0,0,0,0">
-                                        <TextBlock Name="pmsg1" TextAlignment="Left" FontStyle="Italic" FontSize="10" Text="{Binding Path=name, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Name="pmsg1" TextAlignment="Left" FontStyle="Italic" FontSize="10" Text="{Binding name}"></TextBlock>
+                                            <TextBlock Name="omsgtime" Margin="5,0,0,0" TextAlignment="Left" FontStyle="Italic" FontSize="10" Text="{Binding Path=time, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                        </StackPanel>
                                         <TextBlock Height="auto" MaxWidth="400" TextWrapping="Wrap" Name="pmsg2" TextAlignment="Left" FontSize="16" Text="{Binding Path=textmsg}"></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
