@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="Log In" Height="203.09" Width="307.217" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
-        <TabControl x:Name="Tab1" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="183" VerticalAlignment="Top" Width="419" RenderTransformOrigin="0.48,0.51">
+        <TabControl x:Name="ttab" HorizontalAlignment="Left" Height="183" VerticalAlignment="Top" Width="419" RenderTransformOrigin="0.48,0.51" Margin="0,0,-118.2,-9.4">
             <TabItem Header="Log In">
                 <Grid Margin="0,0,0,6">
-                   
-                     <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="88,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbLogin_KeyUp" Text="login" GotFocus="tbLogin_GotFocus"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp" Text="password" GotFocus="tbPassword_GotFocus"/>
-        <Button x:Name="btnSend" Content="Log In" HorizontalAlignment="Left" Margin="88,66,0,0" VerticalAlignment="Top" Width="120" Click="btnSend_Click"/>
+
+                    <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="88,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbLogin_KeyUp" Text="login" GotFocus="tbLogin_GotFocus"/>
+                    <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp" Text="password" GotFocus="tbPassword_GotFocus"/>
+                    <Button x:Name="btnSend" Content="Log In" HorizontalAlignment="Left" Margin="88,66,0,0" VerticalAlignment="Top" Width="120" Click="btnSend_Click"/>
                     <Button x:Name="btnRemind" Content="Remind pass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="88,113,0,0" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Registration">
                 <Grid Margin="0,0,0,19">
-                    
+
                     <TextBox x:Name="tbRegLogin" Height="23" Margin="88,10,205,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyUp="tbRegLogin_KeyUp" Text="login" GotFocus="tbRegLogin_GotFocus" Width="120"/>
                     <TextBox x:Name="tbRegPass" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegPass_KeyUp" Text="password" GotFocus="tbRegPass_GotFocus"/>
                     <TextBox x:Name="tbRegMail" HorizontalAlignment="Left" Height="23" Margin="88,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegMail_KeyUp" Text="email" GotFocus="tbRegMail_GotFocus"/>
@@ -27,9 +27,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-       
-       
-        
-
     </Grid>
 </Window>

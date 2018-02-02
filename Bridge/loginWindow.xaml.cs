@@ -80,7 +80,8 @@ namespace Bridge
                 
                 
                 eng._regUserKek(tbRegLogin.Text, tbRegPass.Text, tbRegMail.Text);
-                Tab1.SelectedIndex = 0;
+                //Tab1.SelectedIndex = 0;
+                ttab.SelectedIndex = 0;
                 tbRegLogin.Clear();
                 tbRegPass.Clear();
                 tbRegMail.Clear();
