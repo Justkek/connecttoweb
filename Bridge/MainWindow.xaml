@@ -23,7 +23,19 @@
                 <TabItem.Header>
                     <Image Height="50" Width="50" Source="Resources\me.png"></Image>
                 </TabItem.Header>
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox Width="400" Margin="10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    
+                                    <TextBlock Text="{Binding Path=name}"/>
+                                    <TextBlock Text="{Binding Path=id}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
