@@ -183,6 +183,15 @@ namespace Bridge
             sendDataToServer(td);
         }
 
+        public void _assignNmae(string newname)
+        {
+            typedata td = new typedata();
+            td.command = "assignname";
+            td.target = this.login;
+            td.msg = newname;
+            sendDataToServer(td);
+        }
+
         public void _regUserKek(string login, string pass, string mail)
         {
 

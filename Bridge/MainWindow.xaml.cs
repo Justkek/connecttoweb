@@ -30,7 +30,19 @@ namespace Bridge
     {
         private BridgeClient enginee;
         public string id { get; set; }
-        public string name { get; set; }
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("name");
+            }
+        }
         private string nick;
         private string _image;
         public string image {
@@ -50,6 +62,8 @@ namespace Bridge
             {
                 if (image != e.map[nick].pict)
                     image = e.map[nick].pict;
+                if (name != e.map[nick].name)
+                    name = "/pm "+e.map[nick].name;
             }
         }
         private bool _isnotread = false;
@@ -118,8 +132,20 @@ namespace Bridge
 
         [DataMember]
         public string id { get; set; }
+        private string _name;
         [DataMember]
-        public string name { get; set; }
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("name");
+            }
+        }
         [DataMember]
         public string pict { get; set; }
         public OnePeople(BridgeClient e)
@@ -148,6 +174,8 @@ namespace Bridge
             {
                 Pict = e.map[id].pict;
             }
+            if (name != e.map[id].name)
+                name = e.map[id].name;
         }
 
         public OnePeople(string idd, string namee, string pictt)
@@ -169,7 +197,19 @@ namespace Bridge
     {
         BridgeClient eng;
         public string id { get; set; }
-        public string name { get; set; }
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("name");
+            }
+        }
         private string _pict;
         public string pict {
             get
@@ -196,6 +236,8 @@ namespace Bridge
             {
                 pict = e.map[id].pict;
             }
+            if (name != e.map[id].name)
+                name = e.map[id].name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -210,7 +252,19 @@ namespace Bridge
     {
         BridgeClient eng;
         public string idfrom { get; set; }
-        public string namefrom { get; set; }
+        private string _namefrom;
+        public string name
+        {
+            get
+            {
+                return _namefrom;
+            }
+            set
+            {
+                _namefrom = value;
+                OnPropertyChanged("name");
+            }
+        }
         public string login { get; set; }
         public string textmsg { get; set; }
         public bool fromSelf { get; set; }
@@ -231,7 +285,7 @@ namespace Bridge
         {
             eng = e;
             idfrom = id;
-            namefrom = id;
+            name = id;
             this.login = login;
             textmsg = text;
             if (idfrom == login)
@@ -247,6 +301,8 @@ namespace Bridge
             {
                 pict = e.map[idfrom].pict;
             }
+            if (name != e.map[idfrom].name)
+                name = e.map[idfrom].name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
