@@ -178,6 +178,7 @@ namespace Bridge
             };
 
             var uploadresult = cloud.Upload(uploadparams);
+            //MessageBox.Show(new Uri(path).LocalPath);
             typedata td = new typedata();
             td.command = "assignpict";
             td.target = this.login;
