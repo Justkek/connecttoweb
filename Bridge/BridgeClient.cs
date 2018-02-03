@@ -275,6 +275,10 @@ namespace Bridge
             td.target = login;
             sendDataToServer(td);
             _getFriends(login, "main");
+            this.win.Dispatcher.Invoke(new Action( ()=>
+            {
+                this.win.Title = "Bridge : " + this.login;
+            }));
         }
 
         private void _logIn(typedata td)

@@ -114,5 +114,4 @@ C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.exe
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.pdb
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\chooseUser.g.cs
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\chooseUser.baml
-C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\Bridge.exe.CodeAnalysisLog.xml
-C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\Bridge.exe.lastcodeanalysissucceeded
+C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.csprojResolveAssemblyReference.cache
