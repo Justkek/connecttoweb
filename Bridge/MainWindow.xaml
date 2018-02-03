@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bridge"
         mc:Ignorable="d"
-        Title="Bridge" Height="609.969" Width="980.382" Loaded="Window_Loaded" Initialized="Window_Initialized" Visibility="Visible" ResizeMode="CanMinimize">
+        Title="Bridge" Height="609.969" Width="980.382" Loaded="Window_Loaded" Initialized="Window_Initialized" Visibility="Visible" ResizeMode="CanMinimize" IsVisibleChanged="Window_IsVisibleChanged">
     <Window.Resources>
         <DataTemplate x:Key="friendsTemplate">
             <StackPanel Margin="5">
@@ -24,17 +24,8 @@
                     <Image Height="50" Width="50" Source="Resources\me.png"></Image>
                 </TabItem.Header>
                 <Grid Background="#FFE5E5E5">
-                    <ListBox Width="400" Margin="10">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-
-                                    <TextBlock Text="{Binding Path=name}"/>
-                                    <TextBlock Text="{Binding Path=id}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <Image x:Name="imgInfoPict" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="300"/>
+                    <Label x:Name="lbInfoId" Content="" HorizontalAlignment="Left" Margin="334,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Showcard Gothic"/>
                 </Grid>
             </TabItem>
             <TabItem>
@@ -142,10 +133,21 @@
                     <Image Height="50" Width="50" Source="Resources\setting.png"></Image>
                 </TabItem.Header>
                 <Grid Background="#FFE5E5E5">
-                    <Image x:Name="imgSettingPict" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" AllowDrop="True" Drop="imgSettingPict_Drop" PreviewDragOver="imgSettingPict_PreviewDragOver" Source="Resources/dragndrop.png" RenderTransformOrigin="0.503,1.005" Stretch="Fill" MouseLeftButtonUp="imgSettingPict_MouseLeftButtonUp"/>
-                    <Button x:Name="btnSettingLoadFrom" Content="Load Picture" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingLoadFrom_Click"/>
-                    <Button x:Name="btnSettingConfirmPicture" Content="Confirm Picture" HorizontalAlignment="Left" Margin="190,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingConfirmPicture_Click"/>
+                    <TabControl HorizontalAlignment="Left" Height="572" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="902" TabStripPlacement="Left">
+                        <TabItem Header="ChangeInfo">
+                            <Grid Background="#FFE5E5E5">
+                                <Image x:Name="imgSettingPict" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" AllowDrop="True" Drop="imgSettingPict_Drop" PreviewDragOver="imgSettingPict_PreviewDragOver" Source="Resources/dragndrop.png" RenderTransformOrigin="0.503,1.005" Stretch="Fill" MouseLeftButtonUp="imgSettingPict_MouseLeftButtonUp"/>
+                                <Button x:Name="btnSettingLoadFrom" Content="Load Picture" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingLoadFrom_Click"/>
+                                <Button x:Name="btnSettingConfirmPicture" Content="Confirm Picture" HorizontalAlignment="Left" Margin="190,315,0,0" VerticalAlignment="Top" Width="120" Click="btnSettingConfirmPicture_Click"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
+            </TabItem>
+            <TabItem x:Name="tbLogOut" MouseLeftButtonDown="tbLogOut_MouseLeftButtonDown" MouseDown="tbLogOut_MouseDown" MouseUp="tbLogOut_MouseUp">
+                <TabItem.Header>
+                    <Image Height="50" Width="50" Source="Resources\logout1.png"></Image>
+                </TabItem.Header>
             </TabItem>
         </TabControl>
 

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.Collections;
-
+using System.Windows.Media;
 
 namespace Bridge
 {
@@ -140,7 +140,7 @@ namespace Bridge
         public Dictionary<string, OnePeople> map = new Dictionary<string, OnePeople>();
 
         WebSocket conn = new WebSocket("ws://gndlfserverbd.herokuapp.com");
-        MainWindow win;
+        public MainWindow win;
         ObservableCollection<oneChat> listOfChates;
         ObservableCollection<oneMsg> listOfMsg;
         private string login = "unknown";
@@ -636,6 +636,14 @@ namespace Bridge
                     OnePeople onee = new OnePeople(this);
                     onee = (OnePeople)primeJSON.DeserializeObject(income.data[i], typeof(OnePeople));
                     map[onee.id] = onee;
+                    if(onee.id == this.login)
+                    {
+                        this.win.Dispatcher.Invoke(new Action(() => {
+                            ImageSourceConverter conv = new ImageSourceConverter();
+                            this.win.imgInfoPict.Source = (ImageSource)conv.ConvertFrom(onee.Pict);
+                            this.win.lbInfoId.Content = onee.id;
+                        }));
+                    }
                 }
               this.win.Dispatcher.Invoke(new Action(() =>
               {

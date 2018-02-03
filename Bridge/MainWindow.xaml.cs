@@ -594,5 +594,61 @@ namespace Bridge
         {
             
         }
+
+        private void tryLogOut()
+        {
+            chates = new ObservableCollection<oneChat>();
+            msges = new ObservableCollection<oneMsg>();
+            friends = new ObservableCollection<OnePeople>();
+            chatsList.ItemsSource = chates;
+            msgsList.ItemsSource = msges;
+            enginee = new BridgeClient(chates, msges, this);
+            users = new ObservableCollection<OneUser>();
+            lbUsersKek.ItemsSource = users;
+            //lbFriends.Items.Clear();
+            lbFriends.ItemsSource = friends;
+            //chatsList.Focus();
+            btnAddUser.Visibility = Visibility.Hidden;
+            btnLeaveChat.Visibility = Visibility.Hidden;
+            btnShowUsers.Visibility = Visibility.Hidden;
+            msgsList.Visibility = Visibility.Hidden;
+            btnSendMsg.Visibility = Visibility.Hidden;
+            boxtomsg.Visibility = Visibility.Hidden;
+            btnFriendsDelete.Visibility = Visibility.Hidden;
+            btnFriendsSend.Visibility = Visibility.Hidden;
+            this.Visibility = Visibility.Hidden;
+            loginWindow lw = new loginWindow(enginee);
+            lw.Top = this.Top + 100;
+            lw.Left = this.Left + 100;
+            lw.Owner = this;
+            lw.Show();
+            lw.Focus();
+            lw.tbLogin.Focus();
+            System.Windows.Forms.Timer tim = new System.Windows.Forms.Timer();
+            tim.Tick += new EventHandler(enginee._sendEmpty);
+            tim.Interval = 20000;
+            tim.Start();
+        }
+
+        private void tbLogOut_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void tbLogOut_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void tbLogOut_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            tryLogOut();
+            tabcontroll.SelectedItem = tabcontroll.Items[1];
+        }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+                tabcontroll.SelectedIndex = 1;
+        }
     }
 }

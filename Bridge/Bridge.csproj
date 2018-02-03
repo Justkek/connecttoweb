@@ -190,5 +190,11 @@
   <ItemGroup>
     <Resource Include="Resources\dragndrop.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logout.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logout1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

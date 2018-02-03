@@ -37,7 +37,9 @@ namespace Bridge
             if (eng.authorized == false)
                 this.Owner.Close();
             else
-                this.Owner.Visibility = Visibility.Visible;
+            { this.Owner.Visibility = Visibility.Visible;
+                eng.win.tabcontroll.SelectedIndex = 1;
+            }
         }
 
         private void tbPassword_KeyUp(object sender, KeyEventArgs e)
