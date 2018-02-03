@@ -93,7 +93,6 @@ C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\System.Security.Crypt
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\WebSocket4Net.dll
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\DSharpPlus.xml
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\DSharpPlus.WebSocket.WebSocket4Net.xml
-C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.csprojResolveAssemblyReference.cache
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\addUserWindow.g.cs
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\formFriendAdd.g.cs
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\loginWindow.g.cs
@@ -115,3 +114,5 @@ C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.exe
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\Bridge.pdb
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\chooseUser.g.cs
 C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\obj\Debug\chooseUser.baml
+C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\Bridge.exe.CodeAnalysisLog.xml
+C:\Users\Xiaomi\source\repos\connecttoweb\Bridge\bin\Debug\Bridge.exe.lastcodeanalysissucceeded
