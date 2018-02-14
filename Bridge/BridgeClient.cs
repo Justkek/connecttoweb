@@ -176,7 +176,6 @@ namespace Bridge
             {
                 File = new FileDescription(new Uri(path).LocalPath)
             };
-
             var uploadresult = cloud.Upload(uploadparams);
             //MessageBox.Show(new Uri(path).LocalPath);
             typedata td = new typedata();

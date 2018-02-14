@@ -501,7 +501,7 @@ namespace Bridge
         {
             //imgSettingPict.Source = (ImageSource)e.Data.GetData(typeof(ImageSource));
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            if (files[0].IndexOf(".jpeg") != -1 || files[0].IndexOf(".png") != -1 || files[0].IndexOf(".jpg") != -1 || files[0].IndexOf(".png") != -1)
+            if (files[0].IndexOf(".jpeg") != -1 || files[0].IndexOf(".png") != -1 || files[0].IndexOf(".jpg") != -1 || files[0].IndexOf(".gif") != -1)
             {
                 ImageSourceConverter conv = new ImageSourceConverter();
                 imgSettingPict.Source = (ImageSource)conv.ConvertFromString(files[0]);
