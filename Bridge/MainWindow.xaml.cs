@@ -444,7 +444,13 @@ namespace Bridge
 
         private void btnLeaveChat_Click(object sender, RoutedEventArgs e)
         {
-            enginee._leaveCurrentChat();
+            if ((string)btnLeaveChat.Content == "Leave chat")
+            {
+                enginee._leaveCurrentChat();
+            } else
+            {
+                enginee._delChatByMaker();
+            }
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)

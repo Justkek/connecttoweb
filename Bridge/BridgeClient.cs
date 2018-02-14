@@ -630,6 +630,14 @@ namespace Bridge
             sendDataToServer(td);
         }
 
+        public void _delChatByMaker()
+        {
+            typedata td = new typedata();
+            td.command = "delgr";
+            td.msg = this.currentGroup;
+            sendDataToServer(td);
+        }
+
         private void doMessage(typedata income)
         {
             //Util.logTime();
@@ -742,6 +750,8 @@ namespace Bridge
                 if (income.msg == "sendgru")
                 {this.win.Dispatcher.Invoke(new Action( () =>
                                 {
+                                    oneChat selectedd = (oneChat)this.win.chatsList.SelectedItem;
+
                     this.listOfChates.Clear();
                     for (int i = 0; i < income.data.Length; i++)
                     {
@@ -753,7 +763,16 @@ namespace Bridge
                                     this.listOfChates.Add(newchat);
                                 
                         
-                    }}
+                    }
+                                    if (selectedd != null)
+                                    {
+                                        if(this.listOfChates.IndexOf(selectedd) == -1)
+                                        {
+                                            this.win.chatsList.SelectedIndex = -1;
+                                        }
+                                    }
+                                }
+
                             ));
                 }
                 else if (income.msg == "sendugr")
@@ -769,6 +788,10 @@ namespace Bridge
                                 getdata = (typegetdata)primeJSON.DeserializeObject(income.data[i], getdata.GetType());
                                 OneUser us = new OneUser(getdata.name, this);
                                 this.win.users.Add(us);
+                                if(this.win.users[0].id == this.login)
+                                {
+                                    this.win.btnLeaveChat.Content = "Delete chat";
+                                }
                             }
                         }));
                     }
