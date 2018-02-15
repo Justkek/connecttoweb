@@ -609,6 +609,15 @@ namespace Bridge
             sendDataToServer(td);
         }
 
+        public void _delUserFromChatByMaker(string logg)
+        {
+            typedata td = new typedata();
+            td.command = "deluserfromchat";
+            td.msg = logg;
+            td.target = currentGroup;
+            sendDataToServer(td);
+        }
+
         public void _createNewChat(string name)
         {
             typedata td = new typedata();
@@ -787,11 +796,17 @@ namespace Bridge
                                 typegetdata getdata = new typegetdata();
                                 getdata = (typegetdata)primeJSON.DeserializeObject(income.data[i], getdata.GetType());
                                 OneUser us = new OneUser(getdata.name, this);
-                                this.win.users.Add(us);
-                                if(this.win.users[0].id == this.login)
+                                if ((i == 0 && us.id == this.login) || (i > 0 && this.win.users[0].id == this.login))
                                 {
                                     this.win.btnLeaveChat.Content = "Delete chat";
+                                    us.isMaker = true;
                                 }
+                                else
+                                {
+                                    us.isMaker = false;
+                                    this.win.btnLeaveChat.Content = "Leave chat";
+                                }
+                                this.win.users.Add(us);
                             }
                         }));
                     }

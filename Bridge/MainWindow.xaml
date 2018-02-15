@@ -90,16 +90,25 @@
                     <Button x:Name="btnLeaveChat" Content="Leave chat" Grid.Column="4" Margin="0.2,0,-0.4,0.4" Click="btnLeaveChat_Click"/>
                     <Button x:Name="btnAddUser" Content="Add to chat" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="30" Click="btnAddUser_Click"/>
                     <Button x:Name="btnShowUsers" Content="Show users" Grid.Column="2" MouseEnter="btnShowUsers_MouseEnter" MouseLeave="btnShowUsers_MouseLeave" Click="btnShowUsers_Click" Margin="0.4,0,0,0.4" Grid.ColumnSpan="1"/>
-                    <ListBox x:Name="lbUsersKek" Background="#FFE5E5E5" Grid.Column="2"  VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="1" MaxHeight="400" Visibility="Hidden" Margin="0,30,0,0">
+                    <ListBox x:Name="lbUsersKek" Background="#FFE5E5E5" Grid.Column="2"  VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="1" MaxHeight="400" Visibility="Hidden" Margin="0,30,0,0" MouseLeave="lbUsersKek_MouseLeave">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="30" Height="30" Source="{Binding Path=pict, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <StackPanel Margin="10,0,0,0">
+                                    <StackPanel Name="spUsers" Margin="10,0,0,0" MinWidth="90" MaxWidth="90" Width="90">
                                         <TextBlock Background="#FFE5E5E5" FontSize="16" Text="{Binding Path=name, UpdateSourceTrigger=PropertyChanged}"/>
                                         <TextBlock Background="#FFE5E5E5" FontSize="12" FontStyle="Italic" Text="{Binding Path=id}"/>
                                     </StackPanel>
+                                    <Button Visibility="Visible" Name="btnDelUserFChat" BorderThickness="0" Background="Transparent" Margin="0,0,0,0" Width="30" Height="30" Content="X" Click="btnDelUserFromChatClick" Tag="{Binding Path=name}"/>
                                 </StackPanel>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding isMaker}" Value="false">
+                                        <Setter TargetName="btnDelUserFChat" Property="Width" Value="0"/>
+                                        <Setter TargetName="spUsers" Property="MinWidth" Value="120"/>
+                                        <Setter TargetName="spUsers" Property="MaxWidth" Value="120"/>
+                                        <Setter TargetName="spUsers" Property="Width" Value="120"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

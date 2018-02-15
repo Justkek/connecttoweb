@@ -197,6 +197,7 @@ namespace Bridge
     {
         BridgeClient eng;
         public string id { get; set; }
+        public bool isMaker { get; set; }
         private string _name;
         public string name
         {
@@ -495,7 +496,9 @@ namespace Bridge
 
         private void btnShowUsers_MouseLeave(object sender, MouseEventArgs e)
         {
-            lbUsersKek.Visibility = Visibility.Hidden;
+            if (e.GetPosition(lbUsersKek).X < 0 || e.GetPosition(lbUsersKek).Y < 0)
+                lbUsersKek.Visibility = Visibility.Hidden;
+            //MessageBox.Show(e.GetPosition(lbUsersKek).X + " " + e.GetPosition(lbUsersKek).Y);
         }
 
         private void btnShowUsers_Click(object sender, RoutedEventArgs e)
@@ -601,6 +604,11 @@ namespace Bridge
             
         }
 
+        private void btnDelUserFromChatClick(object sender, RoutedEventArgs e)
+        {
+            this.enginee._delUserFromChatByMaker((sender as Button).Tag.ToString());
+        }
+
         private void tryLogOut()
         {
             chates = new ObservableCollection<oneChat>();
@@ -655,6 +663,14 @@ namespace Bridge
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
                 tabcontroll.SelectedIndex = 1;
+        }
+
+        private void lbUsersKek_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Point pos = e.GetPosition(btnShowUsers);
+            //MessageBox.Show(pos.X + " " + pos.Y + " | " + btnShowUsers.Width + " " + btnShowUsers.Height);
+            if (pos.Y < 0 || pos.Y > 30.4 || pos.X < 0 || pos.X > 177.6)
+                lbUsersKek.Visibility = Visibility.Hidden;
         }
     }
 }

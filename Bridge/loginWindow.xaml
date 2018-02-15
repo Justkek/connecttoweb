@@ -12,7 +12,7 @@
                 <Grid Margin="0,0,0,6">
 
                     <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="88,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbLogin_KeyUp" Text="login" GotFocus="tbLogin_GotFocus"/>
-                    <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp" Text="password" GotFocus="tbPassword_GotFocus"/>
+                    <PasswordBox PasswordChar="*" x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" VerticalAlignment="Top" Width="120" KeyUp="tbPassword_KeyUp" GotFocus="tbPassword_GotFocus"/>
                     <Button x:Name="btnSend" Content="Log In" HorizontalAlignment="Left" Margin="88,66,0,0" VerticalAlignment="Top" Width="120" Click="btnSend_Click"/>
                     <Button x:Name="btnRemind" Content="Remind pass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="88,113,0,0" IsEnabled="False"/>
                 </Grid>
@@ -21,7 +21,7 @@
                 <Grid Margin="0,0,0,19">
 
                     <TextBox x:Name="tbRegLogin" Height="23" Margin="88,10,205,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyUp="tbRegLogin_KeyUp" Text="login" GotFocus="tbRegLogin_GotFocus" Width="120"/>
-                    <TextBox x:Name="tbRegPass" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegPass_KeyUp" Text="password" GotFocus="tbRegPass_GotFocus"/>
+                    <PasswordBox PasswordChar="*" x:Name="tbRegPass" HorizontalAlignment="Left" Height="23" Margin="88,38,0,0" VerticalAlignment="Top" Width="120" KeyUp="tbRegPass_KeyUp" GotFocus="tbRegPass_GotFocus"/>
                     <TextBox x:Name="tbRegMail" HorizontalAlignment="Left" Height="23" Margin="88,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="tbRegMail_KeyUp" Text="email" GotFocus="tbRegMail_GotFocus"/>
                     <Button x:Name="btnSignUp" Content="SignUp" HorizontalAlignment="Left" Margin="89,94,0,0" VerticalAlignment="Top" Width="119" Click="btnSignUp_Click"/>
                 </Grid>

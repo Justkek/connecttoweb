@@ -25,11 +25,12 @@ namespace Bridge
         {
             eng = e;
             InitializeComponent();
+            
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            eng._testLogIn(tbLogin.Text, tbPassword.Text, this);
+            eng._testLogIn(tbLogin.Text, tbPassword.Password, this);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -45,7 +46,7 @@ namespace Bridge
         private void tbPassword_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
-                eng._testLogIn(tbLogin.Text, tbPassword.Text, this);
+                eng._testLogIn(tbLogin.Text, tbPassword.Password, this);
         }
 
         private void tbLogin_KeyUp(object sender, KeyEventArgs e)
@@ -70,7 +71,7 @@ namespace Bridge
         {
             if(e.Key == Key.Enter)
             {
-                if (tbRegLogin.Text == "" || tbRegPass.Text == "" || tbRegMail.Text == "" || IsValidEmail(tbRegMail.Text) == false || (tbRegLogin.Text.IndexOf(' ') >= 0) || (tbRegPass.Text.IndexOf(' ') >= 0))
+                if (tbRegLogin.Text == "" || tbRegPass.Password == "" || tbRegMail.Text == "" || IsValidEmail(tbRegMail.Text) == false || (tbRegLogin.Text.IndexOf(' ') >= 0) || (tbRegPass.Password.IndexOf(' ') >= 0))
                 {
                     /*ToolTip toolTip = new ToolTip();
                     StackPanel toolTipPanel = new StackPanel();
@@ -81,7 +82,7 @@ namespace Bridge
                 }
                 
                 
-                eng._regUserKek(tbRegLogin.Text, tbRegPass.Text, tbRegMail.Text);
+                eng._regUserKek(tbRegLogin.Text, tbRegPass.Password, tbRegMail.Text);
                 //Tab1.SelectedIndex = 0;
                 ttab.SelectedIndex = 0;
                 tbRegLogin.Clear();
@@ -92,7 +93,7 @@ namespace Bridge
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
-            eng._regUserKek(tbRegLogin.Text, tbRegPass.Text, tbRegMail.Text);
+            eng._regUserKek(tbRegLogin.Text, tbRegPass.Password, tbRegMail.Text);
             tbRegLogin.Clear();
             tbRegPass.Clear();
             tbRegMail.Clear();
@@ -106,7 +107,7 @@ namespace Bridge
 
         private void tbPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (tbPassword.Text == "password")
+            if (tbPassword.Password == "")
                 tbPassword.Clear();
         }
 
@@ -118,7 +119,7 @@ namespace Bridge
 
         private void tbRegPass_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (tbRegPass.Text == "password")
+            if (tbRegPass.Password == "")
                 tbRegPass.Clear();
         }
 
